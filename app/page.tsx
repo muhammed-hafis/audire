@@ -1,5 +1,6 @@
 import Navbar from "@/src/components/layout/Navbar";
 import About from "@/src/components/sections/About";
+import Callback from "@/src/components/sections/Callback";
 import ContactUs from "@/src/components/sections/ContactUs";
 import Courses from "@/src/components/sections/Courses";
 import Gallery from "@/src/components/sections/Gallery";
@@ -15,6 +16,9 @@ function page() {
         <Hero />
       </section>
 
+      <section id="callback">
+        <Callback />
+      </section>
       <section id="courses">
         <Courses />
       </section>
