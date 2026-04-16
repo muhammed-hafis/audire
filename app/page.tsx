@@ -19,17 +19,14 @@ function page() {
       <section id="callback">
         <Callback />
       </section>
-      <section id="courses">
-        <Courses />
+      <section id="results">
+        <Results />
       </section>
 
       <section id="about">
         <About />
       </section>
 
-      <section id="results">
-        <Results />
-      </section>
 
       <section id="gallery">
         <Gallery />
