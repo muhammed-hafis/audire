@@ -6,6 +6,7 @@ import Courses from "@/src/components/sections/Courses";
 import Gallery from "@/src/components/sections/Gallery";
 import Hero from "@/src/components/sections/Hero";
 import Results from "@/src/components/sections/Results";
+import WhyAudire from "@/src/components/sections/WhyAudire";
 import React from "react";
 
 function page() {
@@ -23,6 +24,9 @@ function page() {
         <Results />
       </section>
 
+      <section id="whyaudire">
+        <WhyAudire />
+      </section>
       <section id="about">
         <About />
       </section>
