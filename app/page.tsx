@@ -1,3 +1,4 @@
+import Footer from "@/src/components/layout/Footer";
 import Navbar from "@/src/components/layout/Navbar";
 import About from "@/src/components/sections/About";
 import Callback from "@/src/components/sections/Callback";
@@ -48,6 +49,9 @@ function page() {
       </section>
       <section id="contact">
         <ContactUs/>
+      </section>
+      <section id="footer">
+        <Footer/>
       </section>
     </>
   );
