@@ -46,6 +46,9 @@ function page() {
       <section id="FAQ">
         <FAQ />
       </section>
+      <section id="contact">
+        <ContactUs/>
+      </section>
     </>
   );
 }
