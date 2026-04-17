@@ -19,7 +19,7 @@ const ChevronDown = () => (
 );
 
 export default function FAQ() {
-    const [openId, setOpenId] = useState(1);
+    const [openId, setOpenId] = useState<number | null>(1);
 
     const faqs = [
         {
@@ -54,7 +54,7 @@ export default function FAQ() {
         },
     ];
 
-    const toggleAccordion = (id) => {
+    const toggleAccordion = (id: number) => {
         setOpenId(openId === id ? null : id);
     };
 
@@ -74,8 +74,8 @@ export default function FAQ() {
                                 key={faq.id}
                                 variants={staggerChildVariants}
                                 className={`group rounded-lg border-1 transition-all duration-300 px-6 py-4 ${isActive
-                                        ? "border-[#AD0681]" // Active Border & Background
-                                        : "border-gray-300 bg-white"      // Default Border & Background
+                                        ? "border-[#AD0681]"
+                                        : "border-gray-300 bg-white"
                                     }`}
                             >
                                 <button

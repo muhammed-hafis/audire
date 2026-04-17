@@ -7,9 +7,9 @@ export default function Callback() {
   return (
     <section className="w-full bg-white py-12 md:py-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        {/* CARD */}
+
         <FadeUp distance={40} className="bg-black text-white rounded-3xl px-10 md:px-14 lg:px-24 py-10 md:py-12 flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
-          {/* LEFT CONTENT */}
+
           <FadeUp direction="right" delay={0.2} className="lg:w-1/2 font-kumbh space-y-7">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
               Request a Callback
@@ -27,7 +27,7 @@ export default function Callback() {
             </p>
           </FadeUp>
 
-          {/* RIGHT FORM */}
+
           <FadeUp direction="left" delay={0.4} className="lg:w-1/2 w-full font-raleway font-semibold">
             <form className="space-y-3">
               <input
@@ -44,7 +44,6 @@ export default function Callback() {
                   <option>ACCA</option>
                 </select>
 
-                {/* Custom Arrow */}
                 <div className="pointer-events-none absolute inset-y-0 right-10 flex items-center">
                   <svg
                     className="w-5 h-5 text-black"

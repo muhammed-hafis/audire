@@ -24,7 +24,7 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isNavigatingRef = useRef(false);
 
-  // Scroll to element using Lenis
+
   const scrollToElement = (id: string) => {
     const element = document.getElementById(id);
     if (!element) return;
@@ -36,7 +36,6 @@ export default function Navbar() {
         offset: -NAVBAR_HEIGHT,
         duration: 1.5,
         onComplete: () => {
-          // Add a small delay after scroll completes before re-enabling observer
           setTimeout(() => {
             isNavigatingRef.current = false;
           }, 100);
@@ -49,28 +48,28 @@ export default function Navbar() {
         top: offsetPosition,
         behavior: "smooth",
       });
-      // Fallback for native smooth scroll
+
       setTimeout(() => {
         isNavigatingRef.current = false;
       }, 1000);
     }
 
-    // Update URL
+
     router.replace(`${pathname}#${id}`, { scroll: false });
   };
 
-  // Update active section based on scroll position using Intersection Observer
+
   useEffect(() => {
     const sectionIds = links.map(link => link.id);
 
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-      // Ignore observer updates while navigating via click
+
       if (isNavigatingRef.current) return;
 
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setActiveSection(entry.target.id);
-          // Update URL hash if different
+
           if (window.location.hash.slice(1) !== entry.target.id) {
             router.replace(`${pathname}#${entry.target.id}`, { scroll: false });
           }
@@ -98,7 +97,8 @@ export default function Navbar() {
 
   const handleNavClick = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
-    setActiveSection(id); // Instant feedback for the underline
+
+    setActiveSection(id); 
     setIsMobileMenuOpen(false);
     scrollToElement(id);
   };
@@ -137,8 +137,8 @@ export default function Navbar() {
       <Container>
         <div className="flex h-16 justify-between items-center px-4">
           {/* Logo Placeholder (Keeping existing structure) */}
+
           <div className="flex-shrink-0">
-             {/* If there was a logo, it would go here */}
           </div>
 
           {/* Desktop Menu */}

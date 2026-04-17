@@ -39,14 +39,12 @@ export default function Results() {
     <section className="w-full bg-white py-14 md:py-20 lg:py-24 lg:pt-17 overflow-hidden">
       <Container>
         <div className="max-w-[1400px] mx-auto">
-          {/* Title */}
           <FadeUp>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-[52px] font-bold text-[#8B1C7D] mb-10 md:mb-14">
               Student Results
             </h2>
           </FadeUp>
 
-          {/* Cards */}
           <StaggerContainer 
             className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 md:gap-8"
             staggerChildren={0.1}
@@ -57,7 +55,6 @@ export default function Results() {
                 variants={staggerChildVariants}
                 className="group relative bg-[#EEEEEE] rounded-2xl overflow-hidden"
               >
-                {/* Image */}
                 <div className="relative w-full aspect-[3/4] overflow-hidden">
                   <Image
                     src={student.image}
@@ -69,7 +66,6 @@ export default function Results() {
                   />
                 </div>
 
-                {/* Overlay */}
                 <div
                   className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 
                 bg-[#5B0B62]/60 text-white rounded-xl 
@@ -91,7 +87,6 @@ export default function Results() {
             ))}
           </StaggerContainer>
 
-          {/* Button */}
           <FadeUp className="flex justify-center mt-12 md:mt-16">
             <button
               className="bg-[#5B0B62] font-raleway text-white 

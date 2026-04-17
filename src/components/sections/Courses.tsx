@@ -42,13 +42,13 @@ export default function Courses() {
   return (
     <div className="bg-white flex flex-col gap-y-12 lg:gap-y-18 py-10 lg:py-18 overflow-hidden">
       {courses.map((course) => (
+
         <section
           key={course.id}
           className={`flex flex-col ${course.imagePosition === "right" ? "lg:flex-row" : "lg:flex-row-reverse"
             } items-stretch w-full h-auto lg:min-h-[400px] overflow-hidden 
       border border-gray-100 shadow-sm lg:border-none lg:shadow-none lg:rounded-none rounded-xl`}
         >
-          {/* Text Content Container */}
           <FadeUp
             direction={course.imagePosition === "right" ? "right" : "left"}
             distance={50}
@@ -82,7 +82,6 @@ export default function Courses() {
             </button>
           </FadeUp>
 
-          {/* Image Container */}
           <FadeUp
             direction={course.imagePosition === "right" ? "left" : "right"}
             distance={50}
@@ -97,7 +96,7 @@ export default function Courses() {
               priority={course.id === 1}
             />
 
-            {/* The Snappy Color-Cast Overlay */}
+
             <div className="absolute inset-0 bg-[#5B0B62] opacity-0 group-hover:opacity-40 transition-opacity duration-200 ease-in-out mix-blend-multiply" />
           </FadeUp>
         </section>

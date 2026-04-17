@@ -52,7 +52,6 @@ export default function Testimonials() {
                             onMouseEnter={() => setHoveredId(testimonial.id)}
                             onMouseLeave={() => setHoveredId(null)}
                         >
-                            {/* Image Container */}
                             <div className="relative w-full h-[180px] sm:h-[200px] md:h-[220px] overflow-hidden group cursor-pointer">
                                 <Image
                                     src={testimonial.image}
@@ -62,7 +61,6 @@ export default function Testimonials() {
                                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                 />
 
-                                {/* Play Button Overlay */}
                                 <div
                                     className={`absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-300 ${hoveredId === testimonial.id ? "opacity-100" : "opacity-0"
                                         }`}
@@ -79,7 +77,6 @@ export default function Testimonials() {
                                 </div>
                             </div>
 
-                            {/* Quote Content */}
                             <div className="flex-1 bg-[#F1F1F1] p-5 flex flex-col justify-between">
                                 <div>
                                     <Quote className="w-8 h-8 sm:w-10 sm:h-10 text-[#5B0B62] mb-2 transform rotate-180 fill-[#5B0B62]" />
@@ -97,7 +94,6 @@ export default function Testimonials() {
                 </StaggerContainer>
             </Container>
 
-            {/* Tailwind Utility for hiding scrollbar (Add to your globals.css for best result) */}
             <style jsx global>{`
         .no-scrollbar::-webkit-scrollbar {
           display: none;

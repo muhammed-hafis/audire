@@ -10,9 +10,7 @@ export default function Hero() {
   return (
     <section className="relative w-full pb-10 sm:pb-16 md:pb-20 lg:pb-20 bg-white">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-1 items-center px-4 sm:px-6 md:px-0">
-        {/* LEFT SIDE: CONTENTS */}
         <StaggerContainer className="flex pl-0 sm:pl-4 md:pl-8 lg:pl-16 xl:pl-24 pt-14 sm:pt-12 md:pt-16 flex-col space-y-6 sm:space-y-8 md:space-y-10">
-          {/* Logo - Matching the image scale */}
           <m.div variants={staggerChildVariants} className="flex flex-start">
             <Image
               src="/logo.png"
@@ -24,7 +22,6 @@ export default function Hero() {
             />
           </m.div>
 
-          {/* Main Heading - Responsive sizing */}
           <m.h1 
             variants={staggerChildVariants}
             className="font-kumbh font-[900] text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#5B0B62] leading-tight tracking-tight"
@@ -32,7 +29,6 @@ export default function Hero() {
             Trusted by 5000+ Students
           </m.h1>
 
-          {/* Subheading - Responsive sizing */}
           <m.h2 
             variants={staggerChildVariants}
             className="text-[#5B0B62] font-kumbh font-[700] text-xl sm:text-2xl md:text-2xl lg:text-3xl leading-snug tracking-tight"
@@ -40,7 +36,6 @@ export default function Hero() {
             Expert Coaching for CA | CMA | ACCA
           </m.h2>
 
-          {/* Description - Responsive font size and max-width */}
           <m.p 
             variants={staggerChildVariants}
             className="text-gray-800 font-kumbh font-[500] text-sm sm:text-base md:text-base lg:text-base leading-[1.7] max-w-full sm:max-w-[480px] md:max-w-[520px] lg:max-w-[580px]"
@@ -53,7 +48,6 @@ export default function Hero() {
             commerce.
           </m.p>
 
-          {/* Button - Responsive sizing */}
           <m.div variants={staggerChildVariants}>
             <button className="bg-[#5B0B62] text-white font-raleway font-[500] text-sm sm:text-base md:text-base px-6 sm:px-8 md:px-10 py-2 sm:py-2 md:py-3 rounded-lg w-fit hover:bg-[#4a0950] transition-all transform hover:scale-105 active:scale-95 shadow-md">
               View Courses
@@ -61,10 +55,8 @@ export default function Hero() {
           </m.div>
         </StaggerContainer>
 
-        {/* RIGHT SIDE: IMAGE COMPOSITION */}
         <div className="relative bg-slate-200 w-full aspect-[4/3] sm:aspect-[4/3] md:aspect-[4/3] lg:aspect-square flex items-center justify-center mt-8 sm:mt-10 md:mt-0">
 
-          {/* Main Image */}
           <m.div
             initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
@@ -81,7 +73,6 @@ export default function Hero() {
             />
           </m.div>
 
-          {/* Left Top Image */}
           <FadeUp
             delay={0.5}
             distance={60}
@@ -103,7 +94,6 @@ export default function Hero() {
             </m.div>
           </FadeUp>
 
-          {/* Center Bottom Image */}
           <FadeUp
             delay={0.8}
             distance={60}

@@ -12,15 +12,15 @@ const raleway = Raleway({
 export default function ContactSection() {
   return (
     <section className="relative min-h-[500px] w-full flex items-center bg-gradient-to-br from-[#791883] to-[#AD0681] overflow-hidden">
-      {/* Pattern Image - Left Bottom */}
+
       <div
         className="absolute left-0 bottom-0 w-1/3 h-[70%] bg-contain bg-left-bottom bg-no-repeat pointer-events-none"
         style={{ backgroundImage: "url('/frame2.png')" }}
       ></div>
 
       <Container>
+
         <div className="flex flex-col md:flex-row gap-10 md:gap-0 items-center md:items-end px-5 pt-16 md:pt-20">
-          {/* Left Side: Form */}
           <FadeUp className="flex-1 lg:flex-[1.5] pb-10 md:pb-20 z-10 w-full">
             <h2 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-10 md:mb-16 lg:mb-20 leading-tight">
               Would you like to learn more?

@@ -44,7 +44,7 @@ export function FadeUp({
         damping: 20,
         mass: 1,
         delay,
-        duration: duration || undefined, // Allow duration to be overridden if provided
+        duration: duration || undefined,
       },
     },
   };

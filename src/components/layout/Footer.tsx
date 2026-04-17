@@ -12,7 +12,6 @@ export default function Footer() {
                 <Container>
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 px-5">
 
-                        {/* Column 1: Quick Links */}
                         <FadeUp>
                             <h3 className="text-xl font-[500] mb-6 text-black">Quick Links</h3>
                             <ul className="space-y-4 font-raleway text-black/60 font-semibold">
@@ -67,7 +66,7 @@ export default function Footer() {
                             </ul>
                         </FadeUp>
 
-                        {/* Column 2: Courses */}
+
                         <div>
                             <h3 className="text-xl font-[500] mb-6 text-black">Courses</h3>
                             <ul className="space-y-4 text-black/60 font-semibold font-raleway">
@@ -77,7 +76,7 @@ export default function Footer() {
                             </ul>
                         </div>
 
-                        {/* Column 3: Stories & Testimonials */}
+
                         <div>
                             <ul className="space-y-4 text-black/60 font-raleway font-semibold">
                                 <li>
@@ -99,7 +98,7 @@ export default function Footer() {
                             </ul>
                         </div>
 
-                        {/* Column 4: Keep In Touch & Address */}
+
                         <div className="space-y-8">
                             <div>
                                 <h3 className="text-xl font-[500] mb-6 text-black">Keep In Touch</h3>
