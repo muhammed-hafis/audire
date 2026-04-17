@@ -6,7 +6,7 @@ const raleway = Raleway({ subsets: ['latin'], weight: ['700'] });
 
 export default function ContactSection() {
   return (
-    <section className="relative min-h-[500px] mb-10 w-full flex items-center bg-gradient-to-br from-[#791883] to-[#AD0681] overflow-hidden">
+    <section className="relative min-h-[500px] w-full flex items-center bg-gradient-to-br from-[#791883] to-[#AD0681] overflow-hidden">
       <Container>
         <div className="flex flex-col md:flex-row gap-10 md:gap-0 items-center md:items-end px-5 pt-16 md:pt-20">
 
