@@ -2,10 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import Container from "../ui/Container";
-import { m } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 
 const links = [
   { name: "Home", id: "hero", isHome: true },
@@ -17,129 +16,133 @@ const links = [
 ];
 
 const NAVBAR_HEIGHT = 64;
-const SCROLL_DEBOUNCE_DELAY = 100;
 
 export default function Navbar() {
   const router = useRouter();
   const pathname = usePathname();
   const [activeSection, setActiveSection] = useState<string>("hero");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isScrollingRef = useRef(false);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout>();
-  const debounceTimeoutRef = useRef<NodeJS.Timeout>();
+  const isNavigatingRef = useRef(false);
 
-  // Scroll to element with offset
+  // Scroll to element using Lenis
   const scrollToElement = (id: string) => {
     const element = document.getElementById(id);
     if (!element) return;
 
-    isScrollingRef.current = true;
+    isNavigatingRef.current = true;
 
-    const elementPosition = element.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - NAVBAR_HEIGHT;
-
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: "smooth",
-    });
+    if ((window as any).lenis) {
+      (window as any).lenis.scrollTo(element, {
+        offset: -NAVBAR_HEIGHT,
+        duration: 1.5,
+        onComplete: () => {
+          // Add a small delay after scroll completes before re-enabling observer
+          setTimeout(() => {
+            isNavigatingRef.current = false;
+          }, 100);
+        }
+      });
+    } else {
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - NAVBAR_HEIGHT;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+      // Fallback for native smooth scroll
+      setTimeout(() => {
+        isNavigatingRef.current = false;
+      }, 1000);
+    }
 
     // Update URL
     router.replace(`${pathname}#${id}`, { scroll: false });
-
-    // Reset scrolling flag after animation
-    if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-    scrollTimeoutRef.current = setTimeout(() => {
-      isScrollingRef.current = false;
-    }, 800);
   };
 
-  // Update active section based on scroll position
+  // Update active section based on scroll position using Intersection Observer
   useEffect(() => {
-    const updateActiveLink = () => {
-      if (isScrollingRef.current) return;
+    const sectionIds = links.map(link => link.id);
 
-      const scrollPosition = window.scrollY + NAVBAR_HEIGHT + 50;
-      let foundSection = "hero";
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      // Ignore observer updates while navigating via click
+      if (isNavigatingRef.current) return;
 
-      // Find which section is currently in view
-      for (const link of links) {
-        const element = document.getElementById(link.id);
-        if (!element) continue;
-
-        const { offsetTop, offsetHeight } = element;
-        if (
-          scrollPosition >= offsetTop &&
-          scrollPosition < offsetTop + offsetHeight
-        ) {
-          foundSection = link.id;
-          break;
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+          // Update URL hash if different
+          if (window.location.hash.slice(1) !== entry.target.id) {
+            router.replace(`${pathname}#${entry.target.id}`, { scroll: false });
+          }
         }
+      });
+    };
+
+    const observerOptions = {
+      root: null,
+      rootMargin: `-${NAVBAR_HEIGHT + 10}px 0px -70% 0px`,
+      threshold: 0,
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, observerOptions);
+
+    sectionIds.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) {
+        observer.observe(element);
       }
+    });
 
-      setActiveSection(foundSection);
-
-      // Update URL hash if different
-      if (window.location.hash.slice(1) !== foundSection) {
-        router.replace(`${pathname}#${foundSection}`, { scroll: false });
-      }
-    };
-
-    const debouncedScroll = () => {
-      if (debounceTimeoutRef.current) clearTimeout(debounceTimeoutRef.current);
-      debounceTimeoutRef.current = setTimeout(
-        updateActiveLink,
-        SCROLL_DEBOUNCE_DELAY,
-      );
-    };
-
-    window.addEventListener("scroll", debouncedScroll, { passive: true });
-    updateActiveLink(); // Initial check
-
-    return () => {
-      window.removeEventListener("scroll", debouncedScroll);
-      if (debounceTimeoutRef.current) clearTimeout(debounceTimeoutRef.current);
-    };
+    return () => observer.disconnect();
   }, [pathname, router]);
-
-  // Handle initial hash navigation on mount
-  useEffect(() => {
-    const hash = window.location.hash.slice(1);
-    if (hash && links.some((link) => link.id === hash)) {
-      // Small delay to ensure DOM is ready
-      const timer = setTimeout(() => {
-        scrollToElement(hash);
-      }, 100);
-      return () => clearTimeout(timer);
-    }
-  }, []);
 
   const handleNavClick = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
-    setActiveSection(id);
+    setActiveSection(id); // Instant feedback for the underline
     setIsMobileMenuOpen(false);
     scrollToElement(id);
   };
 
-  const handleHomeClick = (e: React.MouseEvent) => {
-    if (pathname !== "/") return;
-    e.preventDefault();
-    setIsMobileMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    router.replace("/", { scroll: false });
+  const menuVariants = {
+    closed: {
+      opacity: 0,
+      y: -20,
+      transition: {
+        staggerChildren: 0.05,
+        staggerDirection: -1,
+      },
+    },
+    open: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    closed: { opacity: 0, x: -10 },
+    open: { opacity: 1, x: 0 },
   };
 
   return (
     <m.nav 
       initial={{ y: -64, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-      className="fixed top-0 left-0 w-full bg-[#5b0b62] z-[100] text-white shadow-md"
+      transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
+      className="fixed top-0 left-0 w-full bg-[#5b0b62]/90 backdrop-blur-md z-[100] text-white shadow-lg border-b border-white/5"
     >
       <Container>
-        
-        <div className="flex h-16 justify-between pt-3 items-center pr-12">
+        <div className="flex h-16 justify-between items-center px-4">
+          {/* Logo Placeholder (Keeping existing structure) */}
+          <div className="flex-shrink-0">
+             {/* If there was a logo, it would go here */}
+          </div>
+
           {/* Desktop Menu */}
-          <div className="hidden  font-raleway md:flex w-full items-center justify-between lg:gap-8 md:gap-4">
+          <div className="hidden font-raleway md:flex w-full items-center justify-between lg:gap-8 md:gap-4 pr-12">
             {links.map((link) => (
               <button
                 key={link.id}
@@ -151,64 +154,83 @@ export default function Navbar() {
                 }`}
               >
                 {link.name}
-                <span
-                  className={`absolute bottom-3 left-0 h-[1.5px] bg-white transition-all duration-300 ${
-                    activeSection === link.id
-                      ? "w-full opacity-100"
-                      : "w-0 opacity-0"
-                  }`}
-                />
+                <AnimatePresence>
+                  {activeSection === link.id && (
+                    <m.span
+                      initial={{ scaleX: 0, opacity: 0 }}
+                      animate={{ scaleX: 1, opacity: 1 }}
+                      exit={{ scaleX: 0, opacity: 0 }}
+                      className="absolute bottom-3 left-0 h-[1.5px] bg-white w-full origin-center"
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                    />
+                  )}
+                </AnimatePresence>
               </button>
             ))}
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="md:hidden ml-auto">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 hover:bg-white/10 rounded-md transition-colors"
+              className="p-2 hover:bg-white/10 rounded-full transition-all active:scale-90"
               aria-label="Toggle Menu"
-              aria-expanded={isMobileMenuOpen}
             >
-              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              <AnimatePresence mode="wait">
+                {isMobileMenuOpen ? (
+                  <m.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                  >
+                    <X size={24} />
+                  </m.div>
+                ) : (
+                  <m.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                  >
+                    <Menu size={24} />
+                  </m.div>
+                )}
+              </AnimatePresence>
             </button>
           </div>
         </div>
       </Container>
 
       {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-[#5b0b62]/95 backdrop-blur-sm border-t border-white/10 animate-in fade-in slide-in-from-top-2 duration-300">
-          <div className="flex flex-col items-stretch">
-            {/* Mobile Home Link */}
-            {pathname === "/" && (
-              <button
-                onClick={handleHomeClick}
-                className="w-full text-center py-4 text-lg font-medium transition-colors text-white hover:bg-white/10"
-              >
-                Home
-              </button>
-            )}
-
-            {/* Other Links */}
-            {links
-              .filter((link) => !(pathname === "/" && link.isHome))
-              .map((link) => (
-                <button
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <m.div
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={menuVariants}
+            className="md:hidden absolute top-16 left-0 w-full bg-[#5b0b62] backdrop-blur-xl border-t border-white/5 shadow-2xl overflow-hidden"
+          >
+            <div className="flex flex-col p-4 space-y-2">
+              {links.map((link) => (
+                <m.button
                   key={link.id}
+                  variants={itemVariants}
                   onClick={(e) => handleNavClick(e, link.id)}
-                  className={`w-full text-center py-4 text-lg font-medium transition-colors ${
+                  className={`w-full text-left px-6 py-4 rounded-xl text-lg font-medium transition-all ${
                     activeSection === link.id
-                      ? "bg-white/10 text-white font-semibold"
-                      : "text-white/80 hover:bg-white/5"
+                      ? "bg-white/10 text-white translate-x-1"
+                      : "text-white/70 hover:bg-white/5 hover:translate-x-1"
                   }`}
                 >
                   {link.name}
-                </button>
+                </m.button>
               ))}
-          </div>
-        </div>
-      )}
+            </div>
+          </m.div>
+        )}
+      </AnimatePresence>
     </m.nav>
   );
 }

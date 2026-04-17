@@ -19,6 +19,7 @@ export const metadata: Metadata = {
 };
 
 import { MotionProvider } from "@/src/components/ui/motion/MotionProvider";
+import { SmoothScroll } from "@/src/components/ui/motion/SmoothScroll";
 
 export default function RootLayout({
   children,
@@ -31,9 +32,11 @@ export default function RootLayout({
       className={`${raleway.variable} ${kumbhSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <MotionProvider>
-          {children}
-        </MotionProvider>
+        <SmoothScroll>
+          <MotionProvider>
+            {children}
+          </MotionProvider>
+        </SmoothScroll>
       </body>
     </html>
   );

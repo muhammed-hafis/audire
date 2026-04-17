@@ -13,7 +13,7 @@ export default function Footer() {
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 px-5">
 
                         {/* Column 1: Quick Links */}
-                        <div>
+                        <FadeUp>
                             <h3 className="text-xl font-[500] mb-6 text-black">Quick Links</h3>
                             <ul className="space-y-4 font-raleway text-black/60 font-semibold">
                                 <li><Link href="/" className="hover:text-[#AD0681] transition-colors">Home</Link></li>
@@ -23,7 +23,7 @@ export default function Footer() {
                                 <li><Link href="/gallery" className="hover:text-[#AD0681] transition-colors">Gallery</Link></li>
                                 <li><Link href="/contact" className="hover:text-[#AD0681] transition-colors">Contact Us</Link></li>
                             </ul>
-                        </div>
+                        </FadeUp>
 
                         {/* Column 2: Courses */}
                         <div>

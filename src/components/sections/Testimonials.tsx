@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
-import { Quote } from "lucide-react";
-import Container from "../ui/Container";
 import { FadeUp } from "@/src/components/ui/motion/FadeUp";
 import { StaggerContainer, staggerChildVariants } from "@/src/components/ui/motion/StaggerContainer";
 import { m } from "framer-motion";
+import { useState } from 'react'
+import Container from "../ui/Container";
+import Image from "next/image";
+import { Quote } from "lucide-react";
 export default function Testimonials() {
-    const [hoveredId, setHoveredId] = useState(null);
+    const [hoveredId, setHoveredId] = useState<number | null>(null);
 
     const testimonials = [
         {
@@ -40,7 +40,7 @@ export default function Testimonials() {
                     </h2>
                 </FadeUp>
 
-                <StaggerContainer 
+                <StaggerContainer
                     className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 overflow-x-auto pb-6 sm:pb-0 snap-x snap-mandatory scroll-smooth no-scrollbar"
                     staggerChildren={0.15}
                 >

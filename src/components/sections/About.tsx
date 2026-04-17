@@ -11,6 +11,7 @@ export default function About() {
       className="w-full py-12 sm:py-16 md:py-20 lg:py-24 
       bg-gradient-to-br from-[#791883] to-[#AD0681] text-white"
     >
+      
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
         {/* Top Content */}
         <FadeUp className="mb-8 sm:mb-10 md:mb-12">
