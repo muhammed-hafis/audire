@@ -27,8 +27,9 @@ function page() {
       <section id="whyaudire">
         <WhyAudire />
       </section>
-      <section id="about">
-        <About />
+      
+      <section id="courses">
+        <Courses />
       </section>
 
 
