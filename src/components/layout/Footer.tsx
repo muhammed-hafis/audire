@@ -16,12 +16,54 @@ export default function Footer() {
                         <FadeUp>
                             <h3 className="text-xl font-[500] mb-6 text-black">Quick Links</h3>
                             <ul className="space-y-4 font-raleway text-black/60 font-semibold">
-                                <li><Link href="/" className="hover:text-[#AD0681] transition-colors">Home</Link></li>
-                                <li><Link href="/courses" className="hover:text-[#AD0681] transition-colors">Courses</Link></li>
-                                <li><Link href="/about" className="hover:text-[#AD0681] transition-colors">About</Link></li>
-                                <li><Link href="/placements" className="hover:text-[#AD0681] transition-colors">Placements</Link></li>
-                                <li><Link href="/gallery" className="hover:text-[#AD0681] transition-colors">Gallery</Link></li>
-                                <li><Link href="/contact" className="hover:text-[#AD0681] transition-colors">Contact Us</Link></li>
+                                <li>
+                                    <button 
+                                        onClick={() => (window as any).lenis?.scrollTo('#hero', { offset: -64 })}
+                                        className="hover:text-[#AD0681] transition-colors cursor-pointer"
+                                    >
+                                        Home
+                                    </button>
+                                </li>
+                                <li>
+                                    <button 
+                                        onClick={() => (window as any).lenis?.scrollTo('#courses', { offset: -64 })}
+                                        className="hover:text-[#AD0681] transition-colors cursor-pointer"
+                                    >
+                                        Courses
+                                    </button>
+                                </li>
+                                <li>
+                                    <button 
+                                        onClick={() => (window as any).lenis?.scrollTo('#about', { offset: -64 })}
+                                        className="hover:text-[#AD0681] transition-colors cursor-pointer"
+                                    >
+                                        About
+                                    </button>
+                                </li>
+                                <li>
+                                    <button 
+                                        onClick={() => (window as any).lenis?.scrollTo('#results', { offset: -64 })}
+                                        className="hover:text-[#AD0681] transition-colors cursor-pointer"
+                                    >
+                                        Results
+                                    </button>
+                                </li>
+                                <li>
+                                    <button 
+                                        onClick={() => (window as any).lenis?.scrollTo('#gallery', { offset: -64 })}
+                                        className="hover:text-[#AD0681] transition-colors cursor-pointer"
+                                    >
+                                        Gallery
+                                    </button>
+                                </li>
+                                <li>
+                                    <button 
+                                        onClick={() => (window as any).lenis?.scrollTo('#contact', { offset: -64 })}
+                                        className="hover:text-[#AD0681] transition-colors cursor-pointer"
+                                    >
+                                        Contact Us
+                                    </button>
+                                </li>
                             </ul>
                         </FadeUp>
 
@@ -38,8 +80,22 @@ export default function Footer() {
                         {/* Column 3: Stories & Testimonials */}
                         <div>
                             <ul className="space-y-4 text-black/60 font-raleway font-semibold">
-                                <li><Link href="#" className="hover:text-[#AD0681]">Testimonial</Link></li>
-                                <li><Link href="#" className="hover:text-[#AD0681]">Placement Stories</Link></li>
+                                <li>
+                                    <button 
+                                        onClick={() => (window as any).lenis?.scrollTo('#testimonials', { offset: -64 })}
+                                        className="hover:text-[#AD0681] transition-colors cursor-pointer"
+                                    >
+                                        Testimonial
+                                    </button>
+                                </li>
+                                <li>
+                                    <button 
+                                        onClick={() => (window as any).lenis?.scrollTo('#testimonials', { offset: -64 })}
+                                        className="hover:text-[#AD0681] transition-colors cursor-pointer"
+                                    >
+                                        Placement Stories
+                                    </button>
+                                </li>
                             </ul>
                         </div>
 
