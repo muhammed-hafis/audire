@@ -27,7 +27,7 @@ function page() {
         <Results />
       </section>
 
-      <section id="whyaudire">
+      <section id="about">
         <WhyAudire />
       </section>
       
