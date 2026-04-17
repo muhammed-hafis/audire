@@ -3,6 +3,7 @@ import About from "@/src/components/sections/About";
 import Callback from "@/src/components/sections/Callback";
 import ContactUs from "@/src/components/sections/ContactUs";
 import Courses from "@/src/components/sections/Courses";
+import FAQ from "@/src/components/sections/FAQ";
 import Gallery from "@/src/components/sections/Gallery";
 import Hero from "@/src/components/sections/Hero";
 import Results from "@/src/components/sections/Results";
@@ -41,6 +42,9 @@ function page() {
 
       <section id="gallery">
         <Gallery />
+      </section>
+      <section id="FAQ">
+        <FAQ />
       </section>
     </>
   );
