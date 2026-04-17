@@ -2,7 +2,10 @@
 
 import Image from "next/image";
 import Container from "../ui/Container";
-import {  ChevronsRight } from "lucide-react";
+import { ChevronsRight } from "lucide-react";
+import { FadeUp } from "@/src/components/ui/motion/FadeUp";
+import { StaggerContainer, staggerChildVariants } from "@/src/components/ui/motion/StaggerContainer";
+import { m } from "framer-motion";
 
 const students = [
   {
@@ -33,19 +36,25 @@ const students = [
 
 export default function Results() {
   return (
-    <section className="w-full bg-white py-14 md:py-20 lg:py-24 lg:pt-17">
+    <section className="w-full bg-white py-14 md:py-20 lg:py-24 lg:pt-17 overflow-hidden">
       <Container>
         <div className="max-w-[1400px] mx-auto">
           {/* Title */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-[52px] font-bold text-[#8B1C7D] mb-10 md:mb-14">
-            Student Results
-          </h2>
+          <FadeUp>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-[52px] font-bold text-[#8B1C7D] mb-10 md:mb-14">
+              Student Results
+            </h2>
+          </FadeUp>
 
           {/* Cards */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 md:gap-8">
+          <StaggerContainer 
+            className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 md:gap-8"
+            staggerChildren={0.1}
+          >
             {students.map((student, index) => (
-              <div
+              <m.div
                 key={index}
+                variants={staggerChildVariants}
                 className="group relative bg-[#EEEEEE] rounded-2xl overflow-hidden"
               >
                 {/* Image */}
@@ -54,6 +63,8 @@ export default function Results() {
                     src={student.image}
                     alt={student.name}
                     fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                    priority={index < 2}
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
@@ -76,22 +87,22 @@ export default function Results() {
                     {student.location}
                   </p>
                 </div>
-              </div>
+              </m.div>
             ))}
-          </div>
+          </StaggerContainer>
 
           {/* Button */}
-          <div className="flex justify-center mt-12 md:mt-16">
+          <FadeUp className="flex justify-center mt-12 md:mt-16">
             <button
               className="bg-[#5B0B62] font-raleway text-white 
             px-2 sm:px-3 md:px-4 py-2 sm:py-3 
             rounded-xl text-sm md:text-base font-[500]
-            flex items-center gap-2 hover:bg-[#4a0950] transition-all"
+            flex items-center gap-2 hover:bg-[#4a0950] transition-all active:scale-95 shadow-lg"
             >
               View More Placements
               <ChevronsRight className="w-4 h-4 md:w-7 md:h-7" />
             </button>
-          </div>
+          </FadeUp>
         </div>
       </Container>
     </section>

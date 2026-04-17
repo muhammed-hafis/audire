@@ -2,6 +2,9 @@
 
 import React, { useState } from "react";
 import Container from "../ui/Container";
+import { FadeUp } from "@/src/components/ui/motion/FadeUp";
+import { StaggerContainer, staggerChildVariants } from "@/src/components/ui/motion/StaggerContainer";
+import { m } from "framer-motion";
 
 const ChevronUp = () => (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -56,17 +59,20 @@ export default function FAQ() {
     };
 
     return (
-        <section className="bg-white py-12 lg:py-20">
+        <section className="bg-white py-12 lg:py-20 overflow-hidden">
             <Container>
-                <h2 className="text-4xl md:text-5xl font-bold text-[#AD0681] mb-10">FAQ</h2>
+                <FadeUp className="mb-10">
+                    <h2 className="text-4xl md:text-5xl font-bold text-[#AD0681]">FAQ</h2>
+                </FadeUp>
 
-                <div className="space-y-6">
+                <StaggerContainer className="space-y-6">
                     {faqs.map((faq) => {
                         const isActive = openId === faq.id;
 
                         return (
-                            <div
+                            <m.div
                                 key={faq.id}
+                                variants={staggerChildVariants}
                                 className={`group rounded-lg border-1 transition-all duration-300 px-6 py-4 ${isActive
                                         ? "border-[#AD0681]" // Active Border & Background
                                         : "border-gray-300 bg-white"      // Default Border & Background
@@ -94,10 +100,10 @@ export default function FAQ() {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </m.div>
                         );
                     })}
-                </div>
+                </StaggerContainer>
             </Container>
         </section>
     );

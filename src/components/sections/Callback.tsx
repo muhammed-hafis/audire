@@ -1,20 +1,21 @@
 "use client";
 
-import React from "react";
+import { FadeUp } from "@/src/components/ui/motion/FadeUp";
+import { m } from "framer-motion";
 
 export default function Callback() {
   return (
-    <section className="w-full bg-white py-12 md:py-16">
+    <section className="w-full bg-white py-12 md:py-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         {/* CARD */}
-        <div className="bg-black text-white rounded-3xl px-10 md:px-14 lg:px-24 py-10 md:py-12 flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
+        <FadeUp distance={40} className="bg-black text-white rounded-3xl px-10 md:px-14 lg:px-24 py-10 md:py-12 flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
           {/* LEFT CONTENT */}
-          <div className="lg:w-1/2 font-kumbh space-y-7">
+          <FadeUp direction="right" delay={0.2} className="lg:w-1/2 font-kumbh space-y-7">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
               Request a Callback
             </h2>
 
-            <p className="ext-sm md:text-base leading-loose max-w-md">
+            <p className="text-sm md:text-base leading-loose max-w-md">
               We offer a complimentary consultation to help you get started on
               your journey to a successful career in commerce. During this
               session
@@ -24,10 +25,10 @@ export default function Callback() {
               To get started, simply click the button to request a callback. One
               of our advisors will reach out to you shortly.
             </p>
-          </div>
+          </FadeUp>
 
           {/* RIGHT FORM */}
-          <div className="lg:w-1/2 w-full font-raleway font-semibold">
+          <FadeUp direction="left" delay={0.4} className="lg:w-1/2 w-full font-raleway font-semibold">
             <form className="space-y-3">
               <input
                 type="text"
@@ -69,13 +70,13 @@ export default function Callback() {
 
               <button
                 type="submit"
-                className="bg-[#5B0B62] text-white px-12 py-4 mt-2 rounded-xl font-semibold hover:bg-[#4a0950] transition w-full sm:w-auto"
+                className="bg-[#5B0B62] text-white px-12 py-4 mt-2 rounded-xl font-semibold hover:bg-[#4a0950] transition w-full sm:w-auto active:scale-95 shadow-lg"
               >
                 Sent Request
               </button>
             </form>
-          </div>
-        </div>
+          </FadeUp>
+        </FadeUp>
       </div>
     </section>
   );

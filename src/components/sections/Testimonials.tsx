@@ -2,9 +2,11 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Container from "../ui/Container";
 import { Quote } from "lucide-react";
-
+import Container from "../ui/Container";
+import { FadeUp } from "@/src/components/ui/motion/FadeUp";
+import { StaggerContainer, staggerChildVariants } from "@/src/components/ui/motion/StaggerContainer";
+import { m } from "framer-motion";
 export default function Testimonials() {
     const [hoveredId, setHoveredId] = useState(null);
 
@@ -32,17 +34,20 @@ export default function Testimonials() {
     return (
         <section className="bg-white pb-10 lg:pb-16 overflow-hidden">
             <Container>
-                <div className="mb-8 sm:mb-10 md:mb-12">
+                <FadeUp className="mb-8 sm:mb-10 md:mb-12">
                     <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#AD0681] leading-tight">
                         What our learners have to say about us!
                     </h2>
-                </div>
+                </FadeUp>
 
-            
-                <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 overflow-x-auto pb-6 sm:pb-0 snap-x snap-mandatory scroll-smooth no-scrollbar">
+                <StaggerContainer 
+                    className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 overflow-x-auto pb-6 sm:pb-0 snap-x snap-mandatory scroll-smooth no-scrollbar"
+                    staggerChildren={0.15}
+                >
                     {testimonials.map((testimonial) => (
-                        <div
+                        <m.div
                             key={testimonial.id}
+                            variants={staggerChildVariants}
                             className="min-w-[85%] sm:min-w-full flex flex-col rounded-xl overflow-hidden h-full shadow-sm hover:shadow-md transition-shadow duration-300 snap-center"
                             onMouseEnter={() => setHoveredId(testimonial.id)}
                             onMouseLeave={() => setHoveredId(null)}
@@ -87,9 +92,9 @@ export default function Testimonials() {
                                     — {testimonial.author}
                                 </p>
                             </div>
-                        </div>
+                        </m.div>
                     ))}
-                </div>
+                </StaggerContainer>
             </Container>
 
             {/* Tailwind Utility for hiding scrollbar (Add to your globals.css for best result) */}

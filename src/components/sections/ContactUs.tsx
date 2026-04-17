@@ -1,8 +1,13 @@
-import Image from 'next/image';
-import { Raleway } from 'next/font/google';
-import Container from "../ui/Container";
+"use client";
 
-const raleway = Raleway({ subsets: ['latin'], weight: ['700'] });
+import { FadeUp } from "@/src/components/ui/motion/FadeUp";
+import Container from "../ui/Container";
+import { Raleway } from "next/font/google";
+
+const raleway = Raleway({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 export default function ContactSection() {
   return (
@@ -11,7 +16,7 @@ export default function ContactSection() {
         <div className="flex flex-col md:flex-row gap-10 md:gap-0 items-center md:items-end px-5 pt-16 md:pt-20">
 
           {/* Left Side: Form */}
-          <div className="flex-1 lg:flex-[1.5] pb-10 md:pb-20 z-10 w-full">
+          <FadeUp className="flex-1 lg:flex-[1.5] pb-10 md:pb-20 z-10 w-full">
             <h2 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-10 md:mb-16 lg:mb-20 leading-tight">
               Would you like to learn more?
             </h2>
@@ -50,7 +55,7 @@ export default function ContactSection() {
 
               <textarea
                 placeholder="Message"
-                rows="4"
+                rows={4}
                 className="w-full p-4 rounded-xl bg-white/50 placeholder-white/80 text-white focus:outline-none focus:ring-2 focus:ring-white/50 transition-all"
               ></textarea>
 
@@ -61,15 +66,15 @@ export default function ContactSection() {
                 Submit
               </button>
             </form>
-          </div>
+          </FadeUp>
 
-          <div className="hidden flex-1 w-full md:flex justify-center md:justify-end items-end relative">
+          <FadeUp direction="left" className="hidden flex-1 w-full md:flex justify-center md:justify-end items-end relative">
             <img
               src="/contact.png"
               alt="Student illustration"
               className="max-h-[400px] md:max-h-[500px] lg:max-h-[625px] w-auto object-contain object-bottom md:relative md:-right-20 lg:-right-10 xl:right-35"
             />
-          </div>
+          </FadeUp>
 
         </div>
       </Container>

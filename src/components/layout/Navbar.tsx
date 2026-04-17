@@ -5,6 +5,7 @@ import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import Container from "../ui/Container";
+import { m } from "framer-motion";
 
 const links = [
   { name: "Home", id: "hero", isHome: true },
@@ -128,7 +129,12 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-[#5b0b62] z-[100] text-white shadow-md">
+    <m.nav 
+      initial={{ y: -64, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+      className="fixed top-0 left-0 w-full bg-[#5b0b62] z-[100] text-white shadow-md"
+    >
       <Container>
         
         <div className="flex h-16 justify-between pt-3 items-center pr-12">
@@ -203,6 +209,6 @@ export default function Navbar() {
           </div>
         </div>
       )}
-    </nav>
+    </m.nav>
   );
 }
