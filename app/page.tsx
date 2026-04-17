@@ -39,8 +39,8 @@ function page() {
         <Testimonials />
       </section>
 
-      <section id="contact">
-        <ContactUs />
+      <section id="gallery">
+        <Gallery />
       </section>
     </>
   );
