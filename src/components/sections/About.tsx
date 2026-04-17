@@ -9,10 +9,17 @@ export default function About() {
   return (
     <section
       className="w-full py-12 sm:py-16 md:py-20 lg:py-24 
-      bg-gradient-to-br from-[#791883] to-[#AD0681] text-white"
+      bg-gradient-to-br from-[#791883] to-[#AD0681] text-white
+      relative overflow-hidden" // Add relative and overflow-hidden
     >
-      
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
+      {/* Pattern Image on the Right */}
+      <div
+        className="absolute top-0 right-0 h-full w-[150px] lg:w-[40%] 
+          bg-contain bg-right bg-no-repeat opacity-90 pointer-events-none"
+        style={{ backgroundImage: `url('/frame1.png')` }}
+      />
+
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10"> {/* Add z-10 for content */}
         {/* Top Content */}
         <FadeUp className="mb-8 sm:mb-10 md:mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-bold leading-tight">
@@ -51,7 +58,7 @@ export default function About() {
           </div>
 
           {/* RIGHT IMAGE - Forced Square & No Radius */}
-          <FadeUp direction="left" className="w-full lg:w-[35%] flex items-center">
+          <FadeUp direction="left" className="w-full lg:w-[35%] flex items-center relative z-10"> {/* Add z-10 */}
             <div className="relative w-full aspect-square overflow-hidden bg-black/10">
               <Image
                 src="/audire.jpg"
@@ -65,7 +72,7 @@ export default function About() {
 
         {/* STATS - ALWAYS 3 IN ONE ROW */}
         <StaggerContainer
-          className="flex flex-row items-start justify-between gap-2 sm:gap-10 mt-16 sm:mt-24"
+          className="flex flex-row items-start justify-between gap-2 sm:gap-10 mt-16 sm:mt-24 relative z-10" // Add z-10
           staggerChildren={0.15}
         >
           {/* Stat 1 */}
