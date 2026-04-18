@@ -46,21 +46,21 @@ export default function Results() {
           </FadeUp>
 
           <StaggerContainer 
-            className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 md:gap-8"
+            className="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 md:gap-8 pb-6 md:pb-0 snap-x snap-mandatory scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0"
             staggerChildren={0.1}
           >
             {students.map((student, index) => (
               <m.div
                 key={index}
                 variants={staggerChildVariants}
-                className="group relative bg-[#EEEEEE] rounded-2xl overflow-hidden"
+                className="group relative bg-[#EEEEEE] rounded-2xl overflow-hidden min-w-[260px] sm:min-w-[300px] md:min-w-0 snap-center"
               >
                 <div className="relative w-full aspect-[3/4] overflow-hidden">
                   <Image
                     src={student.image}
                     alt={student.name}
                     fill
-                    sizes="(max-width: 768px) 50vw, 25vw"
+                    sizes="(max-width: 768px) 80vw, 25vw"
                     priority={index < 2}
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
