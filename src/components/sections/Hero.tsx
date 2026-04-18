@@ -8,7 +8,7 @@ import { m } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="relative w-full pb-10 sm:pb-16 md:pb-20 lg:pb-20 bg-white">
+    <section className="relative w-full pb-10 sm:pb-16 md:pb-20 lg:pb-20 bg-white overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-1 items-center px-4 sm:px-6 md:px-0">
         <StaggerContainer className="flex pl-0 sm:pl-4 md:pl-8 lg:pl-16 xl:pl-24 pt-14 sm:pt-12 md:pt-16 flex-col space-y-6 sm:space-y-8 md:space-y-10">
           <m.div variants={staggerChildVariants} className="flex flex-start">

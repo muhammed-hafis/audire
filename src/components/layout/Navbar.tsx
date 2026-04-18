@@ -55,7 +55,10 @@ export default function Navbar() {
     }
 
 
-    router.replace(`${pathname}#${id}`, { scroll: false });
+    // Use history.replaceState to update hash without Next.js router transitions
+    if (window.location.hash !== `#${id}`) {
+      window.history.replaceState(null, '', `#${id}`);
+    }
   };
 
 
@@ -70,8 +73,8 @@ export default function Navbar() {
         if (entry.isIntersecting) {
           setActiveSection(entry.target.id);
 
-          if (window.location.hash.slice(1) !== entry.target.id) {
-            router.replace(`${pathname}#${entry.target.id}`, { scroll: false });
+          if (window.location.hash !== `#${entry.target.id}`) {
+            window.history.replaceState(null, '', `#${entry.target.id}`);
           }
         }
       });
