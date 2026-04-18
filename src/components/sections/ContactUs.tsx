@@ -3,6 +3,7 @@
 import { FadeUp } from "@/src/components/ui/motion/FadeUp";
 import Container from "../ui/Container";
 import { Raleway } from "next/font/google";
+import Image from "next/image";
 
 const raleway = Raleway({
   subsets: ["latin"],
@@ -94,9 +95,11 @@ export default function ContactSection() {
             direction="left"
             className="hidden flex-1 w-full md:flex justify-center md:justify-end items-end relative"
           >
-            <img
+            <Image
               src="/contact.png"
               alt="Student illustration"
+              width={625}
+              height={625}
               className="max-h-[400px] md:max-h-[500px] lg:max-h-[625px] w-auto object-contain object-bottom md:relative md:-right-20 lg:-right-10 xl:right-35"
             />
           </FadeUp>

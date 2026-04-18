@@ -93,7 +93,6 @@ export default function Courses() {
               fill
               className="object-cover transition-all duration-200 ease-in-out"
               sizes="(max-width: 1024px) 100vw, 60vw"
-              priority={course.id === 1}
             />
 
 

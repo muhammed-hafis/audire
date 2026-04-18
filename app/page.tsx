@@ -1,14 +1,17 @@
-import Footer from "@/src/components/layout/Footer";
+import dynamic from 'next/dynamic';
 import Navbar from "@/src/components/layout/Navbar";
-import About from "@/src/components/sections/About";
-import Callback from "@/src/components/sections/Callback";
-import ContactUs from "@/src/components/sections/ContactUs";
-import Courses from "@/src/components/sections/Courses";
-import FAQ from "@/src/components/sections/FAQ";
-import Gallery from "@/src/components/sections/Gallery";
 import Hero from "@/src/components/sections/Hero";
-import Results from "@/src/components/sections/Results";
-import Testimonials from "@/src/components/sections/Testimonials";
+
+// Dynamically import sections below the fold
+const About = dynamic(() => import("@/src/components/sections/About"));
+const Callback = dynamic(() => import("@/src/components/sections/Callback"));
+const ContactUs = dynamic(() => import("@/src/components/sections/ContactUs"));
+const Courses = dynamic(() => import("@/src/components/sections/Courses"));
+const FAQ = dynamic(() => import("@/src/components/sections/FAQ"));
+const Gallery = dynamic(() => import("@/src/components/sections/Gallery"));
+const Results = dynamic(() => import("@/src/components/sections/Results"));
+const Testimonials = dynamic(() => import("@/src/components/sections/Testimonials"));
+const Footer = dynamic(() => import("@/src/components/layout/Footer"));
 
 function page() {
   return (

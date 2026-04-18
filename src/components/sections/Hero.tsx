@@ -24,7 +24,7 @@ export default function Hero() {
 
           <m.h1 
             variants={staggerChildVariants}
-            className="font-kumbh font-[900] text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#5B0B62] leading-tight tracking-tight"
+            className="font-kumbh font-[900] z-99 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#5B0B62] leading-tight tracking-tight"
           >
             Trusted by 5000+ Students
           </m.h1>
@@ -67,7 +67,7 @@ export default function Hero() {
               src="/hero-section/image1.jpg"
               alt="Main Student Image"
               fill
-              sizes="100vw"
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
               priority
             />
@@ -88,7 +88,7 @@ export default function Hero() {
                 src="/hero-section/image3.jpg"
                 alt="Classroom View"
                 fill
-                sizes="(max-width: 768px) 35vw, 38vw"
+                sizes="(max-width: 1024px) 35vw, 15vw"
                 className="object-cover"
               />
             </m.div>
@@ -109,7 +109,7 @@ export default function Hero() {
                 src="/hero-section/image2.jpg"
                 alt="Achievement"
                 fill
-                sizes="(max-width: 768px) 42vw, 45vw"
+                sizes="(max-width: 1024px) 45vw, 20vw"
                 className="object-cover"
               />
             </m.div>
