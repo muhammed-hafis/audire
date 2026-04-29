@@ -25,8 +25,8 @@ export const metadata: Metadata = {
   keywords: ["CA coaching", "CMA coaching", "ACCA coaching", "commerce education", "Audire School of Commerce"],
   authors: [{ name: "Audire" }],
   icons: {
-    icon: "/favicon.ico",
-    apple: "/logo.png",
+    icon: "/logo1.png",
+    apple: "/logo1.png",
   },
   openGraph: {
     title: "Audire School of Commerce",
