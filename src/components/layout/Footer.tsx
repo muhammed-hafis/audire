@@ -78,15 +78,8 @@ export default function Footer() {
 
 
                         <div>
+                            <h3 className="text-xl font-[500] mb-6 text-black">Testimonials</h3>
                             <ul className="space-y-4 text-black/60 font-raleway font-semibold">
-                                <li>
-                                    <button 
-                                        onClick={() => (window as any).lenis?.scrollTo('#testimonials', { offset: -64 })}
-                                        className="hover:text-[#AD0681] transition-colors cursor-pointer"
-                                    >
-                                        Testimonial
-                                    </button>
-                                </li>
                                 <li>
                                     <button 
                                         onClick={() => (window as any).lenis?.scrollTo('#testimonials', { offset: -64 })}
@@ -109,11 +102,11 @@ export default function Footer() {
                                     </li>
                                     <li className="flex items-center gap-3 text-black/60">
                                         <Phone className="text-[#AD0681] w-5 h-5 shrink-0" />
-                                        <a href="tel:+916548548498">+91 6548548498</a>
+                                        <a href="tel:+919605658158">+91 9605658158</a>
                                     </li>
                                     <li className="flex items-center gap-3 text-black/60">
                                         <MessageCircle className="text-[#AD0681] w-5 h-5 shrink-0" />
-                                        <a href="https://wa.me/916548548498" target="_blank" rel="noopener noreferrer">+91 6548548498</a>
+                                        <a href="https://wa.me/917025075004" target="_blank" rel="noopener noreferrer">+91 7025075004</a>
                                     </li>
                                 </ul>
                             </div>
@@ -133,4 +126,4 @@ export default function Footer() {
             </FadeUp>
         </footer>
     );
-}
+}

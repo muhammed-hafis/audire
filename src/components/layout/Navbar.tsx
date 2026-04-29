@@ -141,7 +141,8 @@ export default function Navbar() {
         <div className="flex h-16 justify-between items-center px-4">
           {/* Logo Placeholder (Keeping existing structure) */}
 
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 md:hidden flex items-center">
+            <h1 className="font-raleway  text-xl tracking-wide text-white">Audire Learning</h1>
           </div>
 
           {/* Desktop Menu */}

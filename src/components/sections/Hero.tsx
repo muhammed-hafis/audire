@@ -10,10 +10,10 @@ export default function Hero() {
   return (
     <section className="relative w-full pb-10 sm:pb-16 md:pb-20 lg:pb-20 bg-white overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-1 items-center px-4 sm:px-6 md:px-0">
-        <StaggerContainer className="flex pl-0 sm:pl-4 md:pl-8 lg:pl-16 xl:pl-24 pt-14 sm:pt-12 md:pt-16 flex-col space-y-6 sm:space-y-8 md:space-y-10">
+        <StaggerContainer className="flex pl-0 sm:pl-4 md:pl-8 lg:pl-16 xl:pl-24 pt-16 sm:pt-12 md:pt-16 flex-col space-y-6 sm:space-y-8 md:space-y-10">
           <m.div variants={staggerChildVariants} className="flex flex-start">
             <Image
-              src="/logo.png"
+              src="/logo1.png"
               alt="Audire School of Commerce Logo"
               width={140}
               height={40}
@@ -49,7 +49,24 @@ export default function Hero() {
           </m.p>
 
           <m.div variants={staggerChildVariants}>
-            <button className="bg-[#5B0B62] text-white font-raleway font-[500] text-sm sm:text-base md:text-base px-6 sm:px-8 md:px-10 py-2 sm:py-2 md:py-3 rounded-lg w-fit hover:bg-[#4a0950] transition-all transform hover:scale-105 active:scale-95 shadow-md">
+            <button 
+              onClick={() => {
+                const element = document.getElementById("courses");
+                if (!element) return;
+                
+                if ((window as any).lenis) {
+                  (window as any).lenis.scrollTo(element, { offset: -64, duration: 1.5 });
+                } else {
+                  const elementPosition = element.getBoundingClientRect().top;
+                  const offsetPosition = elementPosition + window.pageYOffset - 64;
+                  window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth",
+                  });
+                }
+              }}
+              className="bg-[#5B0B62] text-white font-raleway font-[500] text-sm sm:text-base md:text-base px-6 sm:px-8 md:px-10 py-2 sm:py-2 md:py-3 rounded-lg w-fit hover:bg-[#4a0950] transition-all transform hover:scale-105 active:scale-95 shadow-md"
+            >
               View Courses
             </button>
           </m.div>
